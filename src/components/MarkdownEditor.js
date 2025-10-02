@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { marked } from "marked";
+import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
-const MarkdownEditor = () => {
+function MarkdownEditor() {
   const [userInput, setUserInput] = useState(""); // store Markdown text
   const [previewContent, setPreviewContent] = useState(""); // store rendered HTML
 
   useEffect(() => {
-    // Convert Markdown to HTML whenever userInput changes
-    setPreviewContent(marked(userInput));
+    setPreviewContent(<ReactMarkdown>{userInput}</ReactMarkdown>);
   }, [userInput]);
 
   return (
-    <div className="markdown">
+    <div className="app markdown">
       <textarea
         name="textarea"
         cols="30"
@@ -21,12 +20,9 @@ const MarkdownEditor = () => {
         onChange={(e) => setUserInput(e.target.value)}
       ></textarea>
 
-      <section
-        className="preview"
-        dangerouslySetInnerHTML={{ __html: previewContent }}
-      ></section>
+      <section className="preview">{previewContent}</section>
     </div>
   );
-};
+}
 
 export default MarkdownEditor;
