@@ -11,7 +11,7 @@ const MarkdownEditor = () => {
   }, [userInput]);
 
   return (
-    <div className="app markdown">
+    <div className="markdown">
       <textarea
         name="textarea"
         cols="30"
